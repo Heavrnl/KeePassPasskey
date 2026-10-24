@@ -13,6 +13,8 @@ A KeePass plugin that turns KeePass into a native Windows 11 passkey provider. W
 - [KeePass](https://keepass.info/) 2.54 or later
 - Windows 11 24H2 or later, with TPM[*](docs/troubleshooting-faq.md#why-is-a-tpm-required) enabled and Windows Hello[*](docs/troubleshooting-faq.md#why-is-windows-hello-required) set up
 
+**Limitations & unsupported passkey features:** attestation and the PRF extension. See [Limitations](docs/user-guide.md#limitations).
+
 ## How it works
 
 When a website asks for a passkey, Windows offers KeePassPasskey as a provider. You approve the request, and the passkey is created in your unlocked KeePass database as an ordinary entry. If KeePass is locked, it asks you to unlock it first. Signing in takes the same path, with the entry already there. Keys never leave your database file, and all cryptography runs locally.
