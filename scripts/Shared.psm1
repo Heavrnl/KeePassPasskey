@@ -298,7 +298,9 @@ function Invoke-GenerateLicenseNotices {
 		if ($LASTEXITCODE -ne 0) { throw "Failed to install nuget-license" }
 	}
 
+	# Test packages never ship, so they stay out of the notices
 	$projects = Get-ChildItem -Path "$RepoRoot\src" -Filter '*.csproj' -Recurse |
+					   Where-Object { $_.Name -notlike '*.Tests.csproj' } |
 					   Select-Object -ExpandProperty FullName
 
 	Write-Host "  Restoring NuGet packages..."

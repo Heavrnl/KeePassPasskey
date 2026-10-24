@@ -136,6 +136,7 @@ src/
   KeePassPasskeyShared/         IPC protocol definitions and shared helpers
   KeePassPasskeyProvider/       COM server (.NET 10, x64)
   KeePassPasskeyPlugin/         KeePass plugin (.NET Framework 4.8)
+  KeePassPasskeyPlugin.Tests/   Unit tests (xunit.v3)
   KeePassPasskeyProvider.Package/  MSIX packaging (wapproj)
 scripts/
   Install-Provider.ps1          Build, sign, and install the provider for local testing (requires elevation)
@@ -151,7 +152,7 @@ scripts/
 |---|---|
 | Visual Studio 2026 | With .NET desktop development workload |
 | Windows SDK 10.0.26100.7175+ | Required for wapproj build and code signing |
-| .NET 10 SDK | For KeePassPasskeyProvider |
+| .NET 10 SDK (10.0.400) | For KeePassPasskeyProvider |
 | .NET Framework 4.8 SDK | For KeePassPasskeyPlugin |
 | KeePass.exe (2.54, compile reference) | Place at `build\KeePass.exe` - minimum supported version, used only for compilation |
 | KeePass.exe (current, for debugging) | Place at `build\KeePass\KeePass.exe` - your installed/current version, used to launch KeePass during development |
@@ -171,6 +172,12 @@ Then run the build script as Administrator - builds the MSIX, signs it, and inst
 ```
 
 Copy the DLLs from `build\Release\` to a `KeePassPasskeyPlugin` folder inside your KeePass `Plugins` folder (e.g. `C:\Program Files\KeePass Password Safe 2\Plugins\KeePassPasskeyPlugin\`) and (re)start KeePass. Then click **Advanced Passkey Options** in the app and enable **KeePassPasskey**.
+
+### Running the tests
+
+```powershell
+dotnet test --project src/KeePassPasskeyPlugin.Tests/KeePassPasskeyPlugin.Tests.csproj
+```
 
 ### Manual registration (CLI alternative)
 
