@@ -101,7 +101,7 @@ public partial class MainWindow : FAAppWindow
 	{
 		base.OnClosing(e);
 
-		if (AppSettings.Current.EnableTrayIcon)
+		if (AppSettings.Current.EnableTrayIcon && e.CloseReason == WindowCloseReason.WindowClosing)
 		{
 			e.Cancel = true;
 			Hide();
