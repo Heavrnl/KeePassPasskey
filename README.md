@@ -121,7 +121,7 @@ Credentials created here can be read by KeePassXC and vice versa. Three algorith
 
 ## Security
 
-- All signing happens inside KeePass, so private keys are never sent over the pipe.
+- All signing happens inside KeePass, so private keys are never sent over the pipe. In KeePass they stay under its in-memory protection and are only decrypted for the signature itself, see [How is the private key protected?](docs/troubleshooting-faq.md#how-is-the-private-key-protected)
 - The KeePass plugin verifies the connecting COM server before any request is processed: in production (MSIX-installed) it checks the client's package family name and rejects non-MSIX processes.
 - The named pipe is restricted by ACL to the current user at medium integrity, so other users and lower-integrity processes cannot connect.
 
