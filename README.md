@@ -84,7 +84,7 @@ Install the app, add the plugin to KeePass, enable the provider in Windows. Each
 > [!NOTE]
 > The app updates automatically, the plugin does not. After the app moves to a newer version, KeePass offers to update the plugin at its next start, see [Updates](docs/user-guide.md#updates).
 
-Prefer the command line? `winget install --name "KeePassPasskey" --source msstore` installs the same package.
+Prefer the command line? `winget install 9NWNFHJPSPGZ --source msstore` (or by name: `winget install --name "KeePassPasskey" --source msstore`) installs the same package.
 
 ### Option B - GitHub install with script
 
