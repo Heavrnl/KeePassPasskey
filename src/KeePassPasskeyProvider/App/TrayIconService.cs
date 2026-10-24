@@ -47,6 +47,9 @@ internal sealed class TrayIconService : IDisposable
 			Menu = BuildContextMenu(),
 		};
 		_lastRenderedStatus = _statusHero.Status;
+		// Since Avalonia 12.1 a TrayIcon only creates its native icon once attached to the Application
+		if (Avalonia.Application.Current is { } app)
+			TrayIcon.SetIcons(app, [_trayIcon]);
 		_trayIcon.Clicked += (_, _) =>
 		{
 			var now = DateTime.UtcNow;
@@ -85,6 +88,8 @@ internal sealed class TrayIconService : IDisposable
 		if (_disposed) return;
 		_disposed = true;
 		_statusHero.PropertyChanged -= OnStatusChanged;
+		if (Avalonia.Application.Current is { } app)
+			TrayIcon.SetIcons(app, null);
 		_trayIcon?.Dispose();
 		_trayIcon = null;
 	}
