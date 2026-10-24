@@ -52,7 +52,7 @@ jobs:
 
       - name: Run unit tests
         shell: pwsh
-        run: dotnet test src/KeePassPasskeyPlugin.Tests/KeePassPasskeyPlugin.Tests.csproj -c Debug --nologo
+        run: dotnet test --project src/KeePassPasskeyPlugin.Tests/KeePassPasskeyPlugin.Tests.csproj -c Debug
 
       - name: Build (Debug, optimized, unsigned)
         shell: pwsh
