@@ -5,7 +5,7 @@ KeePassPasskey turns KeePass into a native Windows 11 passkey provider. Once ins
 ## Requirements
 
 - [KeePass](https://keepass.info/) 2.54 or later
-- Windows 11 24H2 or later, with TPM[*](troubleshooting-faq.md#why-is-a-tpm-required) enabled
+- Windows 11 24H2 or later, with TPM[*](troubleshooting-faq.md#why-is-a-tpm-required) enabled and Windows Hello[*](troubleshooting-faq.md#why-is-windows-hello-required) set up
 
 ## Installation
 
@@ -36,6 +36,19 @@ If you dismiss the administrator prompt, or the copy fails for some other reason
 **Installing or removing the plugin from the app.** The app can install, update and remove the plugin for you. It detects your KeePass folder (you can correct it or browse for it, and its `Plugins` folder, or any folder inside it, is accepted just as well) and shows exactly which file will be written where before anything happens. If you would rather do it yourself, it can instead reveal that file in Explorer for you to copy into the `Plugins` folder by hand. This is the route for a first installation, when no plugin is loaded yet to prompt anything.
 
 Either way, the KeePassPasskey passkey provider in Windows Settings remains enabled from the initial installation and does not need to be re-enabled after an update.
+
+## Uninstalling
+
+**The app.** Uninstall it under **Settings → Apps → Installed apps → KeePassPasskey → Uninstall**. Windows then removes KeePassPasskey as a passkey provider by itself, together with the app's settings and log files, which live in the app's own storage. If you want to be extra thorough, you can first click **Clear** under **Credential cache** and **Unregister** under **Provider registration** on the [Diagnostics](#diagnostics) page, but Windows normally takes care of both.
+
+For a GitHub installation, you can also delete the certificate trusted during installation, if you have not already: open **certlm.msc → Trusted People → Certificates**, find **KeePassPasskey**, and delete it.
+
+**The plugin.** Close KeePass and delete `KeePassPasskey.dll` from KeePass's `Plugins` folder, or use **Remove** in the app's **Install plugin** dialog before uninstalling the app. Optionally, also remove:
+
+- The plugin log: the folder `%LOCALAPPDATA%\KeePassPasskey`, with `Plugin.log` and `Plugin.log.bak`.
+- The plugin settings: the `KeePassPasskey.*` entries in `KeePass.config.xml` (next to `KeePass.exe` for KeePass Portable). They do nothing without the plugin; edit the file only while KeePass is closed.
+
+**Your passkeys** stay in your database as ordinary entries, by default in the **Passkeys** group. Delete them if you no longer need them.
 
 ## Creating a passkey
 
