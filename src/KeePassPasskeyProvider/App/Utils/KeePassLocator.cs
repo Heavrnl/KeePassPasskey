@@ -64,7 +64,7 @@ internal static class KeePassLocator
 	}
 
 	internal static bool IsKeePassDirectory(string? directory) =>
-		!string.IsNullOrWhiteSpace(directory) && File.Exists(Path.Combine(directory, KeePassExe));
+		!string.IsNullOrWhiteSpace(directory) && (directory == "builtin" || File.Exists(Path.Combine(directory, KeePassExe)) || File.Exists(Path.Combine(directory, "KeePassXC.exe")));
 
 	private static bool IsPluginsFolder(string? directory) =>
 		directory != null &&
@@ -74,6 +74,8 @@ internal static class KeePassLocator
 	private static KeePassLocation? FromReportedPluginPath()
 	{
 		string? directory = ReportedPluginPath;
+		if (directory != null && directory.StartsWith("builtin:", StringComparison.OrdinalIgnoreCase))
+			return new KeePassLocation("builtin", directory.Substring(8));
 		for (int level = 0; level < 3 && !string.IsNullOrEmpty(directory); level++)
 		{
 			if (IsKeePassDirectory(directory))
@@ -87,13 +89,14 @@ internal static class KeePassLocator
 	{
 		try
 		{
-			foreach (var process in Process.GetProcessesByName("KeePass"))
+			foreach (var name in new[] { "KeePass", "KeePassXC" })
+			foreach (var process in Process.GetProcessesByName(name))
 			{
 				using (process)
 				{
 					string? exe = process.MainModule?.FileName;
 					if (exe != null)
-						return new KeePassLocation(Path.GetDirectoryName(exe)!, "the running KeePass");
+					return new KeePassLocation(Path.GetDirectoryName(exe)!, $"the running {name}");
 				}
 			}
 		}

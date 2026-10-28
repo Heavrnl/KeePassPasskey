@@ -35,8 +35,15 @@ public sealed partial class DiagnosticsViewModel : ObservableObject, IDisposable
 		"have different versions but are compatible. Passkeys keep working, but new features might not be available until the older side is updated.";
 
 	internal static bool ProductVersionsDiffer(string? pluginVersion)
-		=> pluginVersion != null
-		   && PipeConstants.StripBuildMetadata(ClientVersion) != PipeConstants.StripBuildMetadata(pluginVersion);
+	{
+		if (pluginVersion == null) return false;
+		if (KeePassPasskeyProvider.App.Utils.KeePassLocator.ReportedPluginPath != null &&
+		    KeePassPasskeyProvider.App.Utils.KeePassLocator.ReportedPluginPath.StartsWith("builtin:", StringComparison.OrdinalIgnoreCase))
+		{
+			return false;
+		}
+		return PipeConstants.StripBuildMetadata(ClientVersion) != PipeConstants.StripBuildMetadata(pluginVersion);
+	}
 
 	public static string ClientVersion => _appVersion;
 	public static string ClientVersionShort => ShortenVersion(_appVersion);
