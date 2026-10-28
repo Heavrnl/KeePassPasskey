@@ -15,25 +15,11 @@ internal static class AppPaths
 
 	private static string GetLogDir()
 	{
-		try
-		{
-			return Windows.Storage.ApplicationData.Current.LocalCacheFolder.Path;
-		}
-		catch
-		{
-			return SharedLocalAppDataDir;
-		}
+		return SharedLocalAppDataDir;
 	}
 
 	private static string GetSettingsDir()
 	{
-		try
-		{
-			return Windows.Storage.ApplicationData.Current.LocalFolder.Path;
-		}
-		catch
-		{
-			return SharedLocalAppDataDir;
-		}
+		return SharedLocalAppDataDir;
 	}
 }
