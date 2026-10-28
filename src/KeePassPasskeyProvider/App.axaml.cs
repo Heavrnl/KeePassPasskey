@@ -46,6 +46,7 @@ public class Application : Avalonia.Application, IDisposable
 				// Don't assign desktop.MainWindow so Avalonia never auto-shows it.
 				// The tray icon will show it on demand.
 				desktop.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+				MemoryTrimmer.ScheduleTrim(1500);
 			}
 			else
 			{

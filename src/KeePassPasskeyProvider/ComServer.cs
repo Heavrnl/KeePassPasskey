@@ -43,6 +43,7 @@ internal static class ComServer
 
 		// Get the UI stack up before the platform asks for a ceremony; a cold start costs seconds.
 		PromptHost.WarmUp();
+		MemoryTrimmer.ScheduleTrim(1500);
 
 		// Capture main thread ID so the idle timer can post WM_QUIT here to wake GetMessage.
 		uint mainThreadId = Win32Native.GetCurrentThreadId();
@@ -72,6 +73,10 @@ internal static class ComServer
 			{
 				Log.Info("idle timeout reached, requesting shutdown");
 				Win32Native.PostThreadMessage(mainThreadId, Win32Native.WM_QUIT, 0, 0);
+			}
+			else
+			{
+				MemoryTrimmer.TrimNow();
 			}
 		}, null, IdleCheckInterval, IdleCheckInterval);
 

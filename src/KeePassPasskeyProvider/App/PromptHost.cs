@@ -117,6 +117,7 @@ internal static class PromptHost
 			finally
 			{
 				SystemEvents.SessionSwitch -= OnSessionSwitch;
+				KeePassPasskeyProvider.Util.MemoryTrimmer.ScheduleTrim(800);
 			}
 		}
 		catch (Exception ex)
@@ -155,6 +156,7 @@ internal static class PromptHost
 					try { window.Close(); } catch (Exception ex) { Log.Debug($"prewarm close failed: {ex.Message}", nameof(PromptHost)); }
 					_prewarmed.Set();
 					Log.Debug($"prompt window prewarmed in {warmed.ElapsedMilliseconds} ms", nameof(PromptHost));
+					KeePassPasskeyProvider.Util.MemoryTrimmer.ScheduleTrim(500);
 				},
 				TimeSpan.FromMilliseconds(200));
 		}

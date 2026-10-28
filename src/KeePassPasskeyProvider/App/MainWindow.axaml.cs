@@ -38,6 +38,12 @@ public partial class MainWindow : FAAppWindow
 
 		WindowChrome.RemoveBorder(this);
 		WindowChrome.SetCloaked(this, true);
+
+		PropertyChanged += (_, e) =>
+		{
+			if (e.Property == WindowStateProperty && WindowState == WindowState.Minimized)
+				MemoryTrimmer.ScheduleTrim(500);
+		};
 	}
 
 	protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -105,6 +111,7 @@ public partial class MainWindow : FAAppWindow
 		{
 			e.Cancel = true;
 			Hide();
+			MemoryTrimmer.ScheduleTrim(500);
 		}
 	}
 

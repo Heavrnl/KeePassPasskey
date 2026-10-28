@@ -20,7 +20,14 @@
 		<ApplicationIcon Condition="'$(Store)' != 'true'">Resources\app-icon.ico</ApplicationIcon>
 		<ApplicationIcon Condition="'$(Store)' == 'true'">Resources\app-icon-store.ico</ApplicationIcon>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<ServerGarbageCollection>false</ServerGarbageCollection>
+		<GarbageCollectionAdaptationMode>1</GarbageCollectionAdaptationMode>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<RuntimeHostConfigurationOption Include="System.GC.Server" Value="false" />
+		<RuntimeHostConfigurationOption Include="System.GC.ConserveMemory" Value="9" />
+	</ItemGroup>
 
 	<!-- Trimmed publish, gated on Optimized (not Configuration) so a Debug-identity build can still be
 			 packaged release-like (Optimized defaults true for Release). Loose self-contained ships the

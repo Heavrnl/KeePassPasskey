@@ -154,4 +154,7 @@ internal static class Win32Native
 	internal const uint EVENT_MODIFY_STATE = 0x0002;
 	internal const uint WAIT_OBJECT_0 = 0;
 	internal const uint INFINITE = unchecked((uint)-1);
+
+	[DllImport("psapi.dll", SetLastError = true)]
+	internal static extern bool EmptyWorkingSet(nint hProcess);
 }
