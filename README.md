@@ -1,4 +1,4 @@
-# KeePassPasskey
+﻿# KeePassPasskey
 
 [![GitHub](https://img.shields.io/badge/GitHub-yusei36%2FKeePassPasskey-black?logo=github&style=for-the-badge)](https://github.com/yusei36/KeePassPasskey) [![GitHub Release](https://img.shields.io/github/v/release/yusei36/KeePassPasskey?include_prereleases&style=for-the-badge)](https://github.com/yusei36/KeePassPasskey/releases/latest) [![GitHub Release Date](https://img.shields.io/github/release-date-pre/yusei36/KeePassPasskey?style=for-the-badge)](https://github.com/yusei36/KeePassPasskey/releases/latest) [<img src="https://get.microsoft.com/images/en-us%20dark.svg" width="120" alt="从微软商店获取">](https://apps.microsoft.com/detail/9nwnfhjpspgz?mode=direct)
 
@@ -21,13 +21,10 @@
 
 针对新电脑或全新 Windows 11 环境，推荐直接使用打包好的开箱即用套件：
 
-### 1. 运行与配置 KeePassXC（便携版）
-1. 解压带有 Windows Passkey 服务支持的 KeePassXC 便携版（例如解压至 `C:\Tools\KeePassXC` 或任意常用目录）。
-2. 打开 `KeePassXC.exe`，解锁或新建您的 `.kdbx` 密码数据库。
-3. 进入菜单【工具】 -> 【设置】 -> 【通行密钥 (Passkeys)】：
-   - 勾选【启用通行密钥】；
-   - 勾选【允许来自 WindowsPasskey 服务的外部连接】；
-   - 验证模式：默认为“通知模式（免输 Windows PIN 码）”。
+### 1. 运行 KeePassXC（便携版）
+1. 解压带有 Windows Passkey 支持的 KeePassXC 便携版（例如解压至 `C:\Tools\KeePassXC` 或任意常用目录）。
+2. 打开 `KeePassXC.exe`，解锁或新建您的 `.kdbx` 密码数据库即可。
+   *(KeePassXC 会自动在后台开启通行密钥管道服务，原生无感运行，无需进行任何额外设置)*
 
 ### 2. 一键安装 KeePassPasskey
 1. 解压 `KeePassPasskey-v1.5.1-Windows11-x64.zip`。
