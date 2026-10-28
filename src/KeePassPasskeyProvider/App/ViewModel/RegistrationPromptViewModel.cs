@@ -64,11 +64,16 @@ public sealed partial class RegistrationPromptViewModel : PromptViewModelBase
 	internal RegistrationPromptViewModel(RegistrationVerification request)
 	{
 		// rpId, not rpName: rpName is site-supplied and unverified.
-		WindowTitle = "Save passkey";
-		ConfirmText = "Save";
+		WindowTitle = Util.LocalizationService.T("SavePasskeyTitle");
+		ConfirmText = Util.LocalizationService.T("Save");
 		ShowAttestationHint = request.EnterpriseAttestationRequested;
-		SetSite($"{request.RpId} wants to save a passkey",
-			request.UserName.Length > 0 ? $"as {request.UserName}" : "", request.RpId);
+		string headline = Util.LocalizationService.Instance.IsChinese
+			? $"{request.RpId} 希望保存通行密钥"
+			: $"{request.RpId} wants to save a passkey";
+		string subhead = request.UserName.Length > 0
+			? (Util.LocalizationService.Instance.IsChinese ? $"用户名：{request.UserName}" : $"as {request.UserName}")
+			: "";
+		SetSite(headline, subhead, request.RpId);
 
 		Databases = request.Databases;
 		SelectedDatabase = request.Databases.Count > 0 ? request.Databases[0] : null;

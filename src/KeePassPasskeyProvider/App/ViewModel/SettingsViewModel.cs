@@ -173,6 +173,21 @@ public sealed partial class SettingsViewModel : ObservableObject
 		}
 	}
 
+	private string _selectedLanguage = AppSettings.Current.Language;
+	public string SelectedLanguage
+	{
+		get => _selectedLanguage;
+		set
+		{
+			if (!SetProperty(ref _selectedLanguage, value)) return;
+			AppSettings.Current.Language = value;
+			AppSettings.Save(AppSettings.Current);
+			Util.LocalizationService.Instance.CurrentLanguage = value;
+		}
+	}
+
+	public IReadOnlyList<string> Languages { get; } = ["System", "简体中文", "English"];
+
 	private bool _enableTrayIcon = AppSettings.Current.EnableTrayIcon;
 	public bool EnableTrayIcon
 	{
@@ -220,7 +235,7 @@ public sealed partial class SettingsViewModel : ObservableObject
 	protected override void OnPropertyChanged(PropertyChangedEventArgs e)
 	{
 		base.OnPropertyChanged(e);
-		if (!_isLoading && e.PropertyName is not (nameof(IsSaving) or nameof(HasUnsavedChanges) or nameof(EnableTrayIcon) or nameof(Theme)
+		if (!_isLoading && e.PropertyName is not (nameof(IsSaving) or nameof(HasUnsavedChanges) or nameof(EnableTrayIcon) or nameof(Theme) or nameof(SelectedLanguage)
 				or nameof(SpoofAaguid) or nameof(IsApplyingAaguid) or nameof(SpoofAaguidStatus) or nameof(IsSaveToExistingEntryAvailable)
 				or nameof(RegistrationWindowsHello) or nameof(RegistrationPrompt) or nameof(IsRegistrationSilent)
 				or nameof(SignInWindowsHello) or nameof(SignInPrompt) or nameof(IsSignInSilent)))

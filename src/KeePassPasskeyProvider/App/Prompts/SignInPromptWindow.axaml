@@ -1,6 +1,7 @@
 ﻿<!-- SPDX-FileCopyrightText: Copyright (C) 2026 Uwe Koegel -->
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
-<prompts:PromptWindow xmlns="https://github.com/avaloniaui"
+<prompts:PromptWindow xmlns:u="using:KeePassPasskeyProvider.Util"
+xmlns="https://github.com/avaloniaui"
 											xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 											xmlns:fa="using:FluentAvalonia.UI.Controls"
 											xmlns:prompts="using:KeePassPasskeyProvider.App.Prompts"
@@ -80,7 +81,7 @@
 									Command="{Binding ConfirmCommand}" />
 					<Button Grid.Column="2" HorizontalAlignment="Stretch"
 									HorizontalContentAlignment="Center"
-									Content="Cancel"
+									Content="{u:Tr Cancel}"
 									Command="{Binding CancelCommand}" />
 				</Grid>
 			</Border>

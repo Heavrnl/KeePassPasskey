@@ -30,7 +30,8 @@ internal static class Program
 	private static int Main(string[] args)
 	{
 		KeePassPasskeySettings.Current = SettingsCache.TryLoad() ?? new KeePassPasskeySettings();
-		AppSettings.Current = AppSettings.TryLoad() ?? new AppSettings();
+		AppSettings.Current = AppSettings.TryLoad() ?? new AppSettings();
+		LocalizationService.Instance.CurrentLanguage = AppSettings.Current.Language;
 
 		Log.Configure(
 			Path.Combine(AppPaths.LogDir, PluginConstants.ProviderLogFileName),

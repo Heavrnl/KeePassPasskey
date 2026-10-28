@@ -21,7 +21,10 @@ internal sealed class AppSettings
 	internal bool TrayIconPromptShown { get; set; }
 
 	[JsonProperty("theme")]
-	internal Theme Theme { get; set; } = Theme.System;
+	internal Theme Theme { get; set; } = Theme.System;
+
+	[JsonProperty("language")]
+	internal string Language { get; set; } = "System";
 
 	[UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "TrimMode=partial keeps our types intact; IsTrimmable=false keeps Json.NET intact.")]
 	internal static AppSettings? TryLoad()

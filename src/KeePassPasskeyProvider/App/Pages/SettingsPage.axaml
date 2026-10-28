@@ -1,6 +1,7 @@
 ﻿<!-- SPDX-FileCopyrightText: Copyright (C) 2026 Uwe Koegel -->
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
-<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns:u="using:KeePassPasskeyProvider.Util" 
+xmlns="https://github.com/avaloniaui"
 						 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 						 xmlns:ui="using:FluentAvalonia.UI.Controls"
 						 xmlns:vm="using:KeePassPasskeyProvider.App.ViewModel"
@@ -12,18 +13,18 @@
 
 		<Grid RowDefinitions="Auto,*">
 				<Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto,Auto" Margin="16 16 16 4">
-						<TextBlock Text="Settings"
+						<TextBlock Text="{u:Tr SettingsTitle}"
 											 Theme="{StaticResource TitleTextBlockStyle}" />
 						<ui:FASymbolIcon Grid.Column="1" Symbol="ImportantFilled" FontSize="16"
 													 VerticalAlignment="Center" Margin="0 0 8 0"
 													 IsVisible="{Binding HasUnsavedChanges}"
 													 Foreground="{DynamicResource SystemFillColorCautionBrush}"
-													 ToolTip.Tip="You have unsaved changes" />
+													 ToolTip.Tip="{u:Tr UnsavedChangesTooltip}" />
 						<Button Grid.Column="2"
 										Command="{Binding ResetCommand}"
 										IsEnabled="{Binding !IsSaving}"
 										IsVisible="{Binding HasUnsavedChanges}"
-										ToolTip.Tip="Discard changes"
+										ToolTip.Tip="{u:Tr DiscardChangesTooltip}"
 										VerticalAlignment="Center"
 										Margin="0 0 4 0">
 								<ui:FASymbolIcon Symbol="Undo" FontSize="18" />
@@ -32,7 +33,7 @@
 										Command="{Binding ResetToDefaultsCommand}"
 										IsEnabled="{Binding !IsSaving}"
 										IsVisible="{Binding CanResetToDefaults}"
-										ToolTip.Tip="Reset to defaults"
+										ToolTip.Tip="{u:Tr ResetDefaultsTooltip}"
 										VerticalAlignment="Center"
 										Margin="0 0 4 0">
 								<ui:FAFontIcon Glyph="&#xE75C;" FontSize="18" FontFamily="Segoe Fluent Icons" />
@@ -40,7 +41,7 @@
 						<Button Grid.Column="4"
 										Command="{Binding SaveCommand}"
 										IsEnabled="{Binding CanSave}"
-										ToolTip.Tip="Save settings"
+										ToolTip.Tip="{u:Tr SaveSettingsTooltip}"
 										VerticalAlignment="Center"
 										Classes="accent">
 								<ui:FASymbolIcon Symbol="Save" FontSize="18" />
@@ -57,19 +58,29 @@
 																		 Foreground="{DynamicResource SystemFillColorCautionBrush}"
 																		 VerticalAlignment="Center" />
 										<TextBlock TextWrapping="Wrap" VerticalAlignment="Center"
-															 Text="Could not load the latest settings from KeePass. Showing the last known values." />
+															 Text="{u:Tr LoadSettingsFailed}" />
 								</StackPanel>
 						</Border>
 
-						<ui:FASettingsExpander Header="Appearance"
+						<ui:FASettingsExpander Header="{u:Tr HeaderAppearance}"
 																 IconSource="DarkTheme"
-																 Description="Application appearance and theme"
+																 Description="{u:Tr DescAppearance}"
 																 IsExpanded="True">
 								<ui:FASettingsExpander.Footer>
 										<ComboBox SelectedItem="{Binding Theme}"
 															ItemsSource="{Binding Themes}"
 															MinWidth="120" />
 								</ui:FASettingsExpander.Footer>
+
+								
+								<ui:FASettingsExpanderItem Content="{u:Tr Language}"
+																				 Description="{u:Tr DescAppearance}">
+										<ui:FASettingsExpanderItem.Footer>
+												<ComboBox SelectedItem="{Binding SelectedLanguage}"
+																	ItemsSource="{Binding Languages}"
+																	MinWidth="120" />
+										</ui:FASettingsExpanderItem.Footer>
+								</ui:FASettingsExpanderItem>
 
 								<ui:FASettingsExpanderItem Content="System tray icon"
 																				 Description="Show a status icon in the system tray. Closing the window keeps the app running in the tray.">
@@ -83,13 +94,13 @@
 
 						</ui:FASettingsExpander>
 
-						<ui:FASettingsExpander Header="Notifications &amp; User Verification"
+						<ui:FASettingsExpander Header="{u:Tr HeaderVerification}"
 																 IconSource="OtherUser"
-																 Description="Confirmation prompts and user verification for passkey operations"
+																 Description="{u:Tr DescVerification}"
 																 IsExpanded="True">
 
-								<ui:FASettingsExpanderItem Content="Error notifications"
-																				 Description="Show a detailed notification when a passkey error occurs (Windows always displays a generic error)">
+								<ui:FASettingsExpanderItem Content="{u:Tr ErrorNotifications}"
+																				 Description="{u:Tr ErrorNotificationsDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ToggleSwitch IsChecked="{Binding ShowErrorNotifications}"
 																			OnContent="On"
@@ -124,18 +135,18 @@
 																				Foreground="{DynamicResource SystemFillColorCautionBrush}"
 																				ToolTip.Tip="{x:Static vm:SettingsViewModel.SilentVerificationWarning}" />
 																</StackPanel>
-																<TextBlock Text="How you approve saving a new passkey"
+																<TextBlock Text="{u:Tr RegistrationVerificationDesc}"
 																		Foreground="{DynamicResource TextFillColorSecondaryBrush}"
 																		FontSize="12" />
 														</StackPanel>
 														<Grid ColumnDefinitions="*,Auto">
-																<TextBlock Text="Windows Hello (PIN, fingerprint, or face)" VerticalAlignment="Center" />
+																<TextBlock Text="{u:Tr WindowsHelloToggle}" VerticalAlignment="Center" />
 																<ToggleSwitch Grid.Column="1" IsChecked="{Binding RegistrationWindowsHello}" MinHeight="0"
 																		OnContent="On"
 																		OffContent="Off" />
 														</Grid>
 														<Grid ColumnDefinitions="*,Auto">
-																<TextBlock Text="Confirmation prompt" VerticalAlignment="Center" />
+																<TextBlock Text="{u:Tr PromptToggle}" VerticalAlignment="Center" />
 																<ToggleSwitch Grid.Column="1" IsChecked="{Binding RegistrationPrompt}" MinHeight="0"
 																		OnContent="On"
 																		OffContent="Off" />
@@ -161,13 +172,13 @@
 																		FontSize="12" />
 														</StackPanel>
 														<Grid ColumnDefinitions="*,Auto">
-																<TextBlock Text="Windows Hello (PIN, fingerprint, or face)" VerticalAlignment="Center" />
+																<TextBlock Text="{u:Tr WindowsHelloToggle}" VerticalAlignment="Center" />
 																<ToggleSwitch Grid.Column="1" IsChecked="{Binding SignInWindowsHello}" MinHeight="0"
 																		OnContent="On"
 																		OffContent="Off" />
 														</Grid>
 														<Grid ColumnDefinitions="*,Auto">
-																<TextBlock Text="Confirmation prompt" VerticalAlignment="Center" />
+																<TextBlock Text="{u:Tr PromptToggle}" VerticalAlignment="Center" />
 																<ToggleSwitch Grid.Column="1" IsChecked="{Binding SignInPrompt}" MinHeight="0"
 																		OnContent="On"
 																		OffContent="Off" />
@@ -176,8 +187,8 @@
 										</ui:FASettingsExpanderItem.Content>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Skip Windows Hello after unlocking KeePass"
-																				 Description="When KeePass was locked and you just unlocked it for this request, don't ask for Windows Hello again. Only applies while the confirmation prompt is on">
+								<ui:FASettingsExpanderItem Content="{u:Tr SkipHelloAfterUnlock}"
+																				 Description="{u:Tr SkipHelloAfterUnlockDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ToggleSwitch IsChecked="{Binding SkipWindowsHelloAfterUnlock}"
 																			OnContent="On"
@@ -395,18 +406,18 @@
 
 						</ui:FASettingsExpander>
 
-						<ui:FASettingsExpander Header="About"
+						<ui:FASettingsExpander Header="{u:Tr HeaderAbout}"
 																 IconSource="Help"
-																 Description="Version, source code and license"
+																 Description="{u:Tr DescAbout}"
 																 IsExpanded="False">
 
-								<ui:FASettingsExpanderItem Content="Copyright"
+								<ui:FASettingsExpanderItem Content="{u:Tr Copyright}"
 																				 Description="&#169; 2026 Uwe K&#246;gel and contributors" />
 
 								<ui:FASettingsExpanderItem>
 										<ui:FASettingsExpanderItem.Content>
 												<StackPanel>
-														<TextBlock Text="Version" />
+														<TextBlock Text="{u:Tr Version}" />
 														<StackPanel Orientation="Horizontal" Spacing="6" Margin="0 1 0 0">
 																<TextBlock Text="{Binding AppVersion}"
 																					 FontSize="12"
@@ -445,7 +456,7 @@
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Website"
+								<ui:FASettingsExpanderItem Content="{u:Tr Website}"
 																				 Description="keepasspasskey.github.io">
 										<ui:FASettingsExpanderItem.Footer>
 												<Button Command="{Binding OpenUrlCommand}"
@@ -456,7 +467,7 @@
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Source code"
+								<ui:FASettingsExpanderItem Content="{u:Tr SourceCode}"
 																				 Description="github.com/yusei36/KeePassPasskey">
 										<ui:FASettingsExpanderItem.Footer>
 												<Button Command="{Binding OpenUrlCommand}"
@@ -467,7 +478,7 @@
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Contributors"
+								<ui:FASettingsExpanderItem Content="{u:Tr Contributors}"
 																				 Description="github.com/yusei36/KeePassPasskey/graphs/contributors">
 										<ui:FASettingsExpanderItem.Footer>
 												<Button Command="{Binding OpenUrlCommand}"
@@ -478,7 +489,7 @@
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Report a bug"
+								<ui:FASettingsExpanderItem Content="{u:Tr ReportBug}"
 																				 Description="github.com/yusei36/KeePassPasskey/issues">
 										<ui:FASettingsExpanderItem.Footer>
 												<Button Command="{Binding OpenUrlCommand}"
@@ -489,7 +500,7 @@
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="License"
+								<ui:FASettingsExpanderItem Content="{u:Tr License}"
 																				 Description="GNU GPL v3.0 or later"
 																				 IsVisible="{Binding HasLicense}">
 										<ui:FASettingsExpanderItem.Footer>
@@ -500,7 +511,7 @@
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Third-party notices"
+								<ui:FASettingsExpanderItem Content="{u:Tr ThirdPartyNotices}"
 																				 Description="Open source licenses for bundled libraries"
 																				 IsVisible="{Binding HasThirdPartyNotices}">
 										<ui:FASettingsExpanderItem.Footer>
@@ -523,7 +534,7 @@
 						<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12">
 								<ui:FAProgressRing IsIndeterminate="True" Width="48" Height="48"
 																	 HorizontalAlignment="Center" />
-								<TextBlock Text="Loading settings…" HorizontalAlignment="Center" />
+								<TextBlock Text="{u:Tr LoadingSettings}" HorizontalAlignment="Center" />
 						</StackPanel>
 				</Border>
 		</Grid>

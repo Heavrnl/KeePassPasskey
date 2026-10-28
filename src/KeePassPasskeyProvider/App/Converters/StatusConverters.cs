@@ -11,22 +11,22 @@ internal static class ProviderStatusConverters
 {
 	public static readonly IValueConverter Headline = Make(v => (v as ProviderStatus? ?? ProviderStatus.NotRegistered) switch
 	{
-		ProviderStatus.AutoregisterFailed => "Automatic registration failed",
-		ProviderStatus.NotRegistered => "Not registered",
-		ProviderStatus.WaitingToBeEnabled => "Waiting to be enabled",
-		ProviderStatus.IncompatibleVersion => "Incompatible version",
-		ProviderStatus.VersionMismatch => "Version mismatch",
-		ProviderStatus.NoDatabase => "No database open",
-		ProviderStatus.KeePassNotConnected => "KeePass not connected",
-		_ => "All systems ready",
+		ProviderStatus.AutoregisterFailed => Util.LocalizationService.Instance.IsChinese ? "自动注册失败" : "Automatic registration failed",
+		ProviderStatus.NotRegistered => Util.LocalizationService.Instance.IsChinese ? "未注册" : "Not registered",
+		ProviderStatus.WaitingToBeEnabled => Util.LocalizationService.Instance.IsChinese ? "已注册，等待在系统设置中启用" : "Waiting to be enabled",
+		ProviderStatus.IncompatibleVersion => Util.LocalizationService.Instance.IsChinese ? "版本不兼容" : "Incompatible version",
+		ProviderStatus.VersionMismatch => Util.LocalizationService.Instance.IsChinese ? "版本不匹配" : "Version mismatch",
+		ProviderStatus.NoDatabase => Util.LocalizationService.Instance.IsChinese ? "未解锁任何数据库" : "No database open",
+		ProviderStatus.KeePassNotConnected => Util.LocalizationService.Instance.IsChinese ? "KeePass 未连接" : "KeePass not connected",
+		_ => Util.LocalizationService.Instance.IsChinese ? "所有系统已就绪" : "All systems ready",
 	});
 
 	public static readonly IValueConverter ProviderPillText = Make(v => (v as ProviderStatus? ?? ProviderStatus.NotRegistered) switch
 	{
 		ProviderStatus.Ready or ProviderStatus.KeePassNotConnected or ProviderStatus.NoDatabase or
-		ProviderStatus.VersionMismatch or ProviderStatus.IncompatibleVersion => "Enabled",
-		ProviderStatus.WaitingToBeEnabled => "Registered",
-		_ => "Not registered",
+		ProviderStatus.VersionMismatch or ProviderStatus.IncompatibleVersion => Util.LocalizationService.T("Enabled"),
+		ProviderStatus.WaitingToBeEnabled => Util.LocalizationService.T("Registered"),
+		_ => Util.LocalizationService.T("NotRegistered"),
 	});
 
 	private static LambdaConverter Make(Func<object?, object?> convert) => new(convert);
@@ -36,11 +36,11 @@ internal static class PluginPillConverters
 {
 	public static readonly IValueConverter Text = Make(v => (v as PluginPillState? ?? PluginPillState.NotConnected) switch
 	{
-		PluginPillState.Running => "Running",
-		PluginPillState.NoDatabase => "No database open",
-		PluginPillState.VersionMismatch => "Version mismatch",
-		PluginPillState.IncompatibleVersion => "Incompatible version",
-		_ => "Not connected",
+		PluginPillState.Running => Util.LocalizationService.T("Running"),
+		PluginPillState.NoDatabase => Util.LocalizationService.Instance.IsChinese ? "未打开数据库" : "No database open",
+		PluginPillState.VersionMismatch => Util.LocalizationService.Instance.IsChinese ? "版本不匹配" : "Version mismatch",
+		PluginPillState.IncompatibleVersion => Util.LocalizationService.Instance.IsChinese ? "版本不兼容" : "Incompatible version",
+		_ => Util.LocalizationService.T("NotDetected"),
 	});
 
 	private static LambdaConverter Make(Func<object?, object?> convert) => new(convert);

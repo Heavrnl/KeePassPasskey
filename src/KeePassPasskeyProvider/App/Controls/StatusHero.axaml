@@ -1,6 +1,7 @@
 <!-- SPDX-FileCopyrightText: Copyright (C) 2026 Uwe Koegel -->
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
-<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns:u="using:KeePassPasskeyProvider.Util"
+xmlns="https://github.com/avaloniaui"
 						 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 						 xmlns:fa="using:FluentAvalonia.UI.Controls"
 						 xmlns:conv="using:KeePassPasskeyProvider.App.Converters"
@@ -88,7 +89,7 @@
 											VerticalAlignment="Center">
 
 										<TextBlock Grid.Row="0" Grid.Column="0"
-															 Text="Passkey provider" FontSize="12.5" Opacity="0.6" VerticalAlignment="Center" />
+															 Text="{u:Tr StatusPasskeyProvider}" FontSize="12.5" Opacity="0.6" VerticalAlignment="Center" />
 										<Border Grid.Row="0" Grid.Column="1"
 														Background="{DynamicResource ControlFillColorSecondaryBrush}"
 														BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
@@ -104,7 +105,7 @@
 										</Border>
 
 										<TextBlock Grid.Row="1" Grid.Column="0"
-															 Text="KeePass plugin" FontSize="12.5" Opacity="0.6" VerticalAlignment="Center" />
+															 Text="{u:Tr StatusKeePassPlugin}" FontSize="12.5" Opacity="0.6" VerticalAlignment="Center" />
 										<Border Grid.Row="1" Grid.Column="1"
 														Background="{DynamicResource ControlFillColorSecondaryBrush}"
 														BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
@@ -127,11 +128,11 @@
 
 						<!-- Action row -->
 						<Grid ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="8" Margin="18 12 18 14">
-								<Button Grid.Column="0" Content="Refresh status" Command="{Binding RefreshCommand}" Classes="accent" />
-								<Button Grid.Column="1" Content="Register" Command="{Binding RegisterCommand}" IsVisible="{Binding CanRegister}" />
+								<Button Grid.Column="0" Content="{u:Tr RefreshStatus}" Command="{Binding RefreshCommand}" Classes="accent" />
+								<Button Grid.Column="1" Content="{u:Tr Register}" Command="{Binding RegisterCommand}" IsVisible="{Binding CanRegister}" />
 								<Button Grid.Column="3" Content="Install plugin" Command="{Binding InstallPluginCommand}"
 												IsVisible="{Binding ShowPluginFile}" ToolTip.Tip="Install or update the KeePass plugin" />
-								<Button Grid.Column="3" Content="Advanced Passkey Options" Command="{Binding OpenPasskeySettingsCommand}"
+								<Button Grid.Column="3" Content="{u:Tr AdvancedPasskeyOptions}" Command="{Binding OpenPasskeySettingsCommand}"
 												IsVisible="{Binding ShowOpenPasskeySettings}" ToolTip.Tip="Open advanced passkey options in Windows Settings" />
 						</Grid>
 
