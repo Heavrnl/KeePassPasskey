@@ -9,8 +9,8 @@ internal static class ExcludeCredentialCheckModeConverters
 {
 	public static readonly IValueConverter Text = new LambdaConverter(v => (v as ExcludeCredentialCheckMode?) switch
 	{
-		ExcludeCredentialCheckMode.None => "Don't check",
-		ExcludeCredentialCheckMode.AllDatabases => "Check all databases",
-		_ => "Check target database",
+		ExcludeCredentialCheckMode.None => Util.LocalizationService.Instance.IsChinese ? "不检查" : "Don't check",
+		ExcludeCredentialCheckMode.AllDatabases => Util.LocalizationService.Instance.IsChinese ? "检查所有数据库" : "Check all databases",
+		_ => Util.LocalizationService.Instance.IsChinese ? "仅检查目标数据库" : "Check target database",
 	});
 }

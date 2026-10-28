@@ -1,6 +1,7 @@
 <!-- SPDX-FileCopyrightText: Copyright (C) 2026 Uwe Koegel -->
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
-<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns:u="using:KeePassPasskeyProvider.Util"
+xmlns="https://github.com/avaloniaui"
 						 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 						 xmlns:ui="using:FluentAvalonia.UI.Controls"
 						 xmlns:controls="using:KeePassPasskeyProvider.App.Controls"
@@ -10,7 +11,7 @@
 						 x:DataType="vm:DiagnosticsViewModel">
 		<Grid RowDefinitions="Auto,*" Margin="16">
 				<TextBlock Grid.Row="0"
-									 Text="Diagnostics"
+									 Text="{u:Tr NavDiagnostics}"
 									 Theme="{StaticResource TitleTextBlockStyle}"
 									 Margin="0 0 0 4" />
 
@@ -25,13 +26,13 @@
 
 										<!-- Version warnings -->
 										<StackPanel Grid.Row="0" Spacing="8">
-												<ui:FAInfoBar Title="Incompatible version"
+												<ui:FAInfoBar Title="{u:Tr IncompatibleVersion}"
 																		Message="{Binding IncompatibleVersionMessage}"
 																		Severity="Error"
 																		IsOpen="{Binding IsIncompatibleVersion}"
 																		IsVisible="{Binding IsIncompatibleVersion}"
 																		IsClosable="False" />
-												<ui:FAInfoBar Title="Version mismatch"
+												<ui:FAInfoBar Title="{u:Tr VersionMismatch}"
 																		Message="{Binding VersionMismatchMessage}"
 																		Severity="Warning"
 																		IsOpen="{Binding IsVersionMismatch}"
@@ -47,7 +48,7 @@
 														<!-- Provider version row -->
 														<Grid ColumnDefinitions="180,*,28" ColumnSpacing="12" VerticalAlignment="Center">
 																<TextBlock Grid.Column="0"
-																					 Text="Passkey provider"
+																					 Text="{u:Tr StatusPasskeyProvider}"
 																					 FontFamily="Consolas,Courier New,monospace"
 																					 FontSize="12.5" FontWeight="SemiBold"
 																					 VerticalAlignment="Center" />
@@ -73,7 +74,7 @@
 																				Padding="4"
 																				Command="{Binding CopyToClipboardCommand}"
 																				CommandParameter="{Binding ClientVersionWithChannel}"
-																				ToolTip.Tip="Copy provider version">
+																				ToolTip.Tip="{u:Tr CopyProviderVersion}">
 																		<ui:FASymbolIcon Symbol="Copy" FontSize="14" />
 																</Button>
 														</Grid>
@@ -81,7 +82,7 @@
 														<!-- Plugin version row -->
 														<Grid ColumnDefinitions="180,*,28" ColumnSpacing="12" VerticalAlignment="Center">
 																<TextBlock Grid.Column="0"
-																					 Text="KeePass plugin"
+																					 Text="{u:Tr StatusKeePassPlugin}"
 																					 FontFamily="Consolas,Courier New,monospace"
 																					 FontSize="12.5" FontWeight="SemiBold"
 																					 VerticalAlignment="Center" />
@@ -94,7 +95,7 @@
 																														 FontFamily="Consolas,Courier New,monospace"
 																														 FontSize="11.5" Opacity="0.7"
 																														 IsVisible="{Binding IsServerVersionAvailable}" />
-																				<TextBlock Text="not connected"
+																				<TextBlock Text="{u:Tr NotConnected}"
 																									 FontFamily="Consolas,Courier New,monospace"
 																									 FontSize="11.5" Opacity="0.35"
 																									 IsVisible="{Binding IsServerVersionNotAvailable}" />
@@ -105,7 +106,7 @@
 																				Command="{Binding CopyToClipboardCommand}"
 																				CommandParameter="{Binding ServerVersion}"
 																				IsVisible="{Binding IsServerVersionAvailable}"
-																				ToolTip.Tip="Copy plugin version">
+																				ToolTip.Tip="{u:Tr CopyPluginVersion}">
 																		<ui:FASymbolIcon Symbol="Copy" FontSize="14" />
 																</Button>
 														</Grid>
@@ -113,18 +114,18 @@
 														<!-- COM Server actions -->
 														<Grid ColumnDefinitions="180,*,Auto" ColumnSpacing="12" VerticalAlignment="Center">
 																<TextBlock Grid.Column="0"
-																					 Text="Provider registration"
+																					 Text="{u:Tr ProviderRegistration}"
 																					 FontFamily="Consolas,Courier New,monospace"
 																					 FontSize="12.5" FontWeight="SemiBold"
 																					 VerticalAlignment="Center" />
 																<StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
-																		<Button Content="Register"
+																		<Button Content="{u:Tr Register}"
 																						Command="{Binding RegisterCommand}"
 																						Padding="8 3" FontSize="12" />
-																		<Button Content="Unregister"
+																		<Button Content="{u:Tr Unregister}"
 																						Command="{Binding UnregisterCommand}"
 																						Padding="8 3" FontSize="12" />
-																		<Button Content="Advanced passkey settings"
+																		<Button Content="{u:Tr AdvancedPasskeyOptions}"
 																						Command="{Binding OpenPasskeySettingsCommand}"
 																						ToolTip.Tip="Open the passkey provider switch in Windows Settings"
 																						Padding="8 3" FontSize="12" />
@@ -134,22 +135,22 @@
 														<!-- Credential cache actions -->
 														<Grid ColumnDefinitions="180,*,Auto" ColumnSpacing="12" VerticalAlignment="Center">
 																<TextBlock Grid.Column="0"
-																					 Text="Credential cache"
+																					 Text="{u:Tr CredentialCache}"
 																					 FontFamily="Consolas,Courier New,monospace"
 																					 FontSize="12.5" FontWeight="SemiBold"
 																					 VerticalAlignment="Center" />
 																<StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
-																		<Button Content="Sync now"
+																		<Button Content="{u:Tr SyncNow}"
 																						Command="{Binding SyncCredentialsCommand}"
-																						ToolTip.Tip="Refresh the Windows cache from the open KeePass databases now"
+																						ToolTip.Tip="{u:Tr SyncNowTooltip}"
 																						Padding="8 3" FontSize="12" />
-																		<Button Content="Write to log"
+																		<Button Content="{u:Tr WriteToLog}"
 																						Command="{Binding DumpCredentialsCommand}"
-																						ToolTip.Tip="Write the Windows cache and the KeePass passkeys to the log"
+																						ToolTip.Tip="{u:Tr WriteToLogTooltip}"
 																						Padding="8 3" FontSize="12" />
-																		<Button Content="Clear"
+																		<Button Content="{u:Tr Clear}"
 																						Command="{Binding ClearCredentialsCommand}"
-																						ToolTip.Tip="Remove every passkey from the Windows cache. They return on the next database open or save."
+																						ToolTip.Tip="{u:Tr ClearTooltip}"
 																						Padding="8 3" FontSize="12" />
 																</StackPanel>
 														</Grid>

@@ -1,6 +1,7 @@
 <!-- SPDX-FileCopyrightText: Copyright (C) 2026 Uwe Koegel -->
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
-<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns:u="using:KeePassPasskeyProvider.Util"
+xmlns="https://github.com/avaloniaui"
 						 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 						 xmlns:ui="using:FluentAvalonia.UI.Controls"
 						 xmlns:vm="using:KeePassPasskeyProvider.App.ViewModel"
@@ -70,13 +71,13 @@
 								</ToolTip.Tip>
 						</SelectableTextBlock>
 						<StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="2">
-								<Button Padding="4" Command="{Binding OpenLogDirCommand}" ToolTip.Tip="Open log directory">
+								<Button Padding="4" Command="{Binding OpenLogDirCommand}" ToolTip.Tip="{u:Tr OpenLogDir}">
 										<ui:FASymbolIcon Symbol="Folder" FontSize="14" />
 								</Button>
-								<Button Padding="4" Command="{Binding OpenLogFileCommand}" ToolTip.Tip="Open log file">
+								<Button Padding="4" Command="{Binding OpenLogFileCommand}" ToolTip.Tip="{u:Tr OpenLogFile}">
 										<ui:FASymbolIcon Symbol="Document" FontSize="14" />
 								</Button>
-								<Button Padding="4" Command="{Binding CopyLogCommand}" ToolTip.Tip="Copy log to clipboard">
+								<Button Padding="4" Command="{Binding CopyLogCommand}" ToolTip.Tip="{u:Tr CopyLog}">
 										<ui:FASymbolIcon Symbol="Copy" FontSize="14" />
 								</Button>
 						</StackPanel>

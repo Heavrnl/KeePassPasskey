@@ -1,6 +1,7 @@
 <!-- SPDX-FileCopyrightText: Copyright (C) 2026 Uwe Koegel -->
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
-<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns:u="using:KeePassPasskeyProvider.Util"
+xmlns="https://github.com/avaloniaui"
 						 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 						 xmlns:vm="using:KeePassPasskeyProvider.App.ViewModel"
 						 xmlns:fa="using:FluentAvalonia.UI.Controls"
@@ -9,10 +10,10 @@
 		<Expander IsExpanded="{Binding IsSetupExpanded, Mode=TwoWay}">
 				<Expander.Header>
 						<StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-								<TextBlock Text="Getting started" FontWeight="SemiBold" FontSize="14" VerticalAlignment="Center" />
+								<TextBlock Text="{u:Tr GettingStarted}" FontWeight="SemiBold" FontSize="14" VerticalAlignment="Center" />
 								<Button Classes="hyperlink" Padding="4" Opacity="0.6"
 												Command="{Binding OpenUserGuideCommand}"
-												ToolTip.Tip="Open user guide"
+												ToolTip.Tip="{u:Tr OpenUserGuide}"
 												VerticalAlignment="Center">
 										<fa:FAFontIcon Glyph="&#xE8F1;" FontSize="16" FontFamily="Segoe Fluent Icons" />
 								</Button>
@@ -30,24 +31,20 @@
 															 HorizontalAlignment="Center" VerticalAlignment="Center" />
 								</Border>
 								<StackPanel Grid.Column="1" Spacing="4">
-										<TextBlock Text="Install the plugin" FontWeight="SemiBold" FontSize="13" />
+										<TextBlock Text="{u:Tr Step1Title}" FontWeight="SemiBold" FontSize="13" />
 										<TextBlock TextWrapping="Wrap" FontSize="12" Foreground="{DynamicResource TextFillColorSecondaryBrush}">
-												<Run Text="Put " />
-												<Run Text="KeePassPasskey.dll" FontFamily="Consolas,Courier New,monospace" FontWeight="SemiBold" />
-												<Run Text=" in your KeePass " />
-												<Run Text="Plugins" FontFamily="Consolas,Courier New,monospace" FontWeight="SemiBold" />
-												<Run Text=" folder, by hand or with the button below, then restart KeePass." />
+												<Run Text="{u:Tr Step1Desc}" />
 										</TextBlock>
 										<StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Left">
-												<Button Content="Install plugin"
+												<Button Content="{u:Tr InstallPlugin}"
 																Command="{Binding InstallPluginCommand}"
 																IsVisible="{Binding HasBundledPlugin}"
-																ToolTip.Tip="Install or update the KeePass plugin"
+																ToolTip.Tip="{u:Tr InstallPluginTooltip}"
 																Padding="6 2" FontSize="12" />
-												<Button Content="Show plugin file"
+												<Button Content="{u:Tr ShowPluginFile}"
 																Command="{Binding ShowPluginFileCommand}"
 																IsVisible="{Binding HasBundledPlugin}"
-																ToolTip.Tip="Reveal KeePassPasskey.dll in Explorer to copy it yourself"
+																ToolTip.Tip="{u:Tr ShowPluginFileTooltip}"
 																Padding="6 2" FontSize="12" />
 										</StackPanel>
 								</StackPanel>
@@ -65,13 +62,11 @@
 															 HorizontalAlignment="Center" VerticalAlignment="Center" />
 								</Border>
 								<StackPanel Grid.Column="1" Spacing="4">
-										<TextBlock Text="Open Advanced Passkey Options" FontWeight="SemiBold" FontSize="13" />
+										<TextBlock Text="{u:Tr Step2Title}" FontWeight="SemiBold" FontSize="13" />
 										<TextBlock TextWrapping="Wrap" FontSize="12" Foreground="{DynamicResource TextFillColorSecondaryBrush}">
-												<Run Text="Go to " />
-												<Run Text="Settings › Accounts › Passkeys › Advanced options" FontFamily="Consolas,Courier New,monospace" FontWeight="SemiBold" />
-												<Run Text=", or use the button below." />
+												<Run Text="{u:Tr Step2Desc}" />
 										</TextBlock>
-										<Button Content="Advanced Passkey Options"
+										<Button Content="{u:Tr AdvancedPasskeyOptions}"
 														Command="{Binding OpenPasskeySettingsCommand}"
 														ToolTip.Tip="Open advanced passkey options in Windows Settings"
 														Padding="6 2" FontSize="12" HorizontalAlignment="Left" />
@@ -90,11 +85,9 @@
 															 HorizontalAlignment="Center" VerticalAlignment="Center" />
 								</Border>
 								<StackPanel Grid.Column="1" Spacing="2">
-										<TextBlock Text="Enable KeePassPasskey" FontWeight="SemiBold" FontSize="13" />
+										<TextBlock Text="{u:Tr Step3Title}" FontWeight="SemiBold" FontSize="13" />
 										<TextBlock TextWrapping="Wrap" FontSize="12" Foreground="{DynamicResource TextFillColorSecondaryBrush}">
-												<Run Text="Toggle " />
-												<Run Text="KeePassPasskey" FontFamily="Consolas,Courier New,monospace" FontWeight="SemiBold" />
-												<Run Text=" on in the passkey provider list." />
+												<Run Text="{u:Tr Step3Desc}" />
 										</TextBlock>
 								</StackPanel>
 						</Grid>
@@ -111,13 +104,9 @@
 															 HorizontalAlignment="Center" VerticalAlignment="Center" />
 								</Border>
 								<StackPanel Grid.Column="1" Spacing="2">
-										<TextBlock Text="Verify" FontWeight="SemiBold" FontSize="13" />
+										<TextBlock Text="{u:Tr Step4Title}" FontWeight="SemiBold" FontSize="13" />
 										<TextBlock TextWrapping="Wrap" FontSize="12" Foreground="{DynamicResource TextFillColorSecondaryBrush}">
-												<Run Text="Both statuses above should read " />
-												<Run Text="Enabled" FontFamily="Consolas,Courier New,monospace" FontWeight="SemiBold" />
-												<Run Text=" / " />
-												<Run Text="Running" FontFamily="Consolas,Courier New,monospace" FontWeight="SemiBold" />
-												<Run Text="." />
+												<Run Text="{u:Tr Step4Desc}" />
 										</TextBlock>
 								</StackPanel>
 						</Grid>

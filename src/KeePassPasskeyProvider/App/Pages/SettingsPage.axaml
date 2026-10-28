@@ -82,8 +82,8 @@ xmlns="https://github.com/avaloniaui"
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="System tray icon"
-																				 Description="Show a status icon in the system tray. Closing the window keeps the app running in the tray.">
+								<ui:FASettingsExpanderItem Content="{u:Tr SystemTrayIcon}"
+																				 Description="{u:Tr SystemTrayIconDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ToggleSwitch IsChecked="{Binding EnableTrayIcon}"
 																			OnContent="On"
@@ -109,8 +109,8 @@ xmlns="https://github.com/avaloniaui"
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Approval timeout"
-																				 Description="How long the confirmation prompt stays open">
+								<ui:FASettingsExpanderItem Content="{u:Tr ApprovalTimeout}"
+																				 Description="{u:Tr ApprovalTimeoutDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ui:FANumberBox Value="{Binding NotificationTimeoutSeconds}"
 																			Minimum="5"
@@ -128,7 +128,7 @@ xmlns="https://github.com/avaloniaui"
 												<StackPanel Spacing="0" Margin="0 4">
 														<StackPanel Spacing="2" Margin="0 0 0 6">
 																<StackPanel Orientation="Horizontal" Spacing="8">
-																		<TextBlock Text="Registration" VerticalAlignment="Center" />
+																		<TextBlock Text="{u:Tr RegistrationVerification}" VerticalAlignment="Center" />
 																		<ui:FASymbolIcon Symbol="ImportantFilled" FontSize="16"
 																				VerticalAlignment="Center"
 																				IsVisible="{Binding IsRegistrationSilent}"
@@ -160,14 +160,14 @@ xmlns="https://github.com/avaloniaui"
 												<StackPanel Spacing="0" Margin="0 4">
 														<StackPanel Spacing="2" Margin="0 0 0 6">
 																<StackPanel Orientation="Horizontal" Spacing="8">
-																		<TextBlock Text="Sign-in" VerticalAlignment="Center" />
+																		<TextBlock Text="{u:Tr SignInVerification}" VerticalAlignment="Center" />
 																		<ui:FASymbolIcon Symbol="ImportantFilled" FontSize="16"
 																				VerticalAlignment="Center"
 																				IsVisible="{Binding IsSignInSilent}"
 																				Foreground="{DynamicResource SystemFillColorCautionBrush}"
 																				ToolTip.Tip="{x:Static vm:SettingsViewModel.SilentVerificationWarning}" />
 																</StackPanel>
-																<TextBlock Text="How you approve signing in"
+																<TextBlock Text="{u:Tr SignInVerificationDesc}"
 																		Foreground="{DynamicResource TextFillColorSecondaryBrush}"
 																		FontSize="12" />
 														</StackPanel>
@@ -199,13 +199,13 @@ xmlns="https://github.com/avaloniaui"
 
 						</ui:FASettingsExpander>
 
-						<ui:FASettingsExpander Header="Passkey Entries"
+						<ui:FASettingsExpander Header="{u:Tr HeaderPasskeyEntries}"
 																 IconSource="Save"
-																 Description="How new passkey entries are created"
+																 Description="{u:Tr DescPasskeyEntries}"
 																 IsExpanded="True">
 
-								<ui:FASettingsExpanderItem Content="Save new passkeys in"
-																				 Description="Passkeys group: the default group for passkeys.&#x0a;Selected group: the group selected in KeePass when creating the passkey.">
+								<ui:FASettingsExpanderItem Content="{u:Tr SaveNewPasskeysIn}"
+																				 Description="{u:Tr SaveNewPasskeysInDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ComboBox SelectedItem="{Binding NewEntryGroupMode}"
 																	ItemsSource="{Binding GroupModes}"
@@ -219,8 +219,8 @@ xmlns="https://github.com/avaloniaui"
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Entry title"
-																				 Description="Title for new entries. Supports {RP_NAME} and KeePass placeholders like {USERNAME} or {URL}.">
+								<ui:FASettingsExpanderItem Content="{u:Tr EntryTitle}"
+																				 Description="{u:Tr EntryTitleDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<TextBox Text="{Binding EntryTitleTemplate}"
 																 PlaceholderText="{}{RP_NAME} (Passkey)"
@@ -228,8 +228,8 @@ xmlns="https://github.com/avaloniaui"
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Store resolved title placeholders"
-																				 Description="On: placeholders are resolved and the final text is saved in the title. Off: KeePass resolves them each time the entry is shown. {RP_NAME} is always resolved on save.">
+								<ui:FASettingsExpanderItem Content="{u:Tr StoreResolvedPlaceholders}"
+																				 Description="{u:Tr StoreResolvedPlaceholdersDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ToggleSwitch IsChecked="{Binding ResolveTitlePlaceholders}"
 																			OnContent="On"
@@ -238,8 +238,8 @@ xmlns="https://github.com/avaloniaui"
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Tag new passkeys"
-																				 Description="Add a &quot;Passkey&quot; tag to each entry created when a new passkey is registered">
+								<ui:FASettingsExpanderItem Content="{u:Tr TagNewPasskeys}"
+																				 Description="{u:Tr TagNewPasskeysDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ToggleSwitch IsChecked="{Binding AddPasskeyTag}"
 																			OnContent="On"
@@ -248,8 +248,8 @@ xmlns="https://github.com/avaloniaui"
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Allow duplicate passkeys"
-																				 Description="Where to enforce a website's request not to add a second passkey for an account it already has one for.">
+								<ui:FASettingsExpanderItem Content="{u:Tr AllowDuplicatePasskeys}"
+																				 Description="{u:Tr AllowDuplicatePasskeysDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ComboBox SelectedItem="{Binding ExcludeCredentialCheckMode}"
 																	ItemsSource="{Binding ExcludeCredentialCheckModes}"
@@ -265,13 +265,13 @@ xmlns="https://github.com/avaloniaui"
 
 						</ui:FASettingsExpander>
 
-						<ui:FASettingsExpander Header="Advanced"
+						<ui:FASettingsExpander Header="{u:Tr HeaderAdvanced}"
 																 IconSource="Setting"
-																 Description="Behaviour, timing and logging settings that are rarely changed"
+																 Description="{u:Tr DescAdvanced}"
 																 IsExpanded="False">
 
-								<ui:FASettingsExpanderItem Content="Log level"
-																				 Description="Verbosity of the provider and plugin log files">
+								<ui:FASettingsExpanderItem Content="{u:Tr LogLevel}"
+																				 Description="{u:Tr LogLevelDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ComboBox SelectedItem="{Binding LogLevel}"
 																	ItemsSource="{Binding LogLevels}"
@@ -279,8 +279,8 @@ xmlns="https://github.com/avaloniaui"
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Status refresh interval"
-																				 Description="How often the app polls for provider status">
+								<ui:FASettingsExpanderItem Content="{u:Tr StatusRefreshInterval}"
+																				 Description="{u:Tr StatusRefreshIntervalDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ui:FANumberBox Value="{Binding StatusRefreshIntervalSeconds}"
 																			Minimum="1"
@@ -293,8 +293,8 @@ xmlns="https://github.com/avaloniaui"
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Offer saving to an existing entry"
-																				 Description="Offer to save a passkey onto a matching entry instead of always creating a new one. Requires the registration confirmation prompt.">
+								<ui:FASettingsExpanderItem Content="{u:Tr OfferSavingToExistingEntry}"
+																				 Description="{u:Tr OfferSavingToExistingEntryDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ToggleSwitch IsChecked="{Binding SaveToExistingEntry}"
 																			IsEnabled="{Binding IsSaveToExistingEntryAvailable}"
@@ -304,8 +304,8 @@ xmlns="https://github.com/avaloniaui"
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Check for plugin updates"
-																			 Description="When KeePass starts, offer to update the plugin if this app ships a newer one. Every update is confirmed in a dialog.">
+								<ui:FASettingsExpanderItem Content="{u:Tr CheckForPluginUpdates}"
+																			 Description="{u:Tr CheckForPluginUpdatesDesc}">
 									<ui:FASettingsExpanderItem.Footer>
 											<ToggleSwitch IsChecked="{Binding CheckForPluginUpdates}"
 																OnContent="On"
@@ -314,8 +314,8 @@ xmlns="https://github.com/avaloniaui"
 									</ui:FASettingsExpanderItem.Footer>
 							</ui:FASettingsExpanderItem>
 
-							<ui:FASettingsExpanderItem Content="Use legacy notification prompts"
-																				 Description="Show confirmation prompts as Windows notifications instead of dialogs. Notifications are silently hidden by Focus Assist and Do Not Disturb, and their pickers are limited to 5 items.">
+							<ui:FASettingsExpanderItem Content="{u:Tr UseLegacyNotificationPrompts}"
+																				 Description="{u:Tr UseLegacyNotificationPromptsDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ToggleSwitch IsChecked="{Binding UseLegacyNotificationPrompts}"
 																			OnContent="On"
@@ -326,13 +326,13 @@ xmlns="https://github.com/avaloniaui"
 
 						</ui:FASettingsExpander>
 
-						<ui:FASettingsExpander Header="Expert"
+						<ui:FASettingsExpander Header="{u:Tr HeaderExpert}"
 																 IconSource="Important"
-																 Description="Advanced options for uncommon setups. Change only if you know why."
+																 Description="{u:Tr DescExpert}"
 																 IsExpanded="False">
 
-								<ui:FASettingsExpanderItem Content="Windows credential cache"
-																				 Description="Lets your passkeys appear in the Windows sign-in prompt and autofill. Turning this off prevents passkey sign-in on most sites.">
+								<ui:FASettingsExpanderItem Content="{u:Tr WindowsCredentialCache}"
+																				 Description="{u:Tr WindowsCredentialCacheDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ToggleSwitch IsChecked="{Binding SyncCredentialsToWindows}"
 																			OnContent="On"
@@ -341,8 +341,8 @@ xmlns="https://github.com/avaloniaui"
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Backup Eligibility (BE)"
-																				 Description="When on, websites are told that a new passkey is allowed to be backed up and synced to your other devices. When off, they are told it is saved on a single device only.">
+								<ui:FASettingsExpanderItem Content="{u:Tr BackupEligibility}"
+																				 Description="{u:Tr BackupEligibilityDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ToggleSwitch IsChecked="{Binding NewPasskeyBackupEligible}"
 																			OnContent="On"
@@ -351,8 +351,8 @@ xmlns="https://github.com/avaloniaui"
 										</ui:FASettingsExpanderItem.Footer>
 								</ui:FASettingsExpanderItem>
 
-								<ui:FASettingsExpanderItem Content="Backup State (BS)"
-																				 Description="When on, websites are told that a new passkey is backed up right now. Only available while &quot;Backup Eligibility&quot; is on.">
+								<ui:FASettingsExpanderItem Content="{u:Tr BackupState}"
+																				 Description="{u:Tr BackupStateDesc}">
 										<ui:FASettingsExpanderItem.Footer>
 												<ToggleSwitch IsChecked="{Binding NewPasskeyBackupState}"
 																			IsEnabled="{Binding NewPasskeyBackupEligible}"
@@ -366,8 +366,8 @@ xmlns="https://github.com/avaloniaui"
 										<ui:FASettingsExpanderItem.Content>
 												<StackPanel Spacing="8" Margin="0 4">
 														<StackPanel Spacing="2">
-																<TextBlock Text="Spoof AAGUID" />
-																<TextBlock Text="Override the authenticator identifier (AAGUID) that websites see when you create a passkey. Leave empty to use the default. Applying re-registers the authenticator with Windows."
+																<TextBlock Text="{u:Tr SpoofAaguid}" />
+																<TextBlock Text="{u:Tr SpoofAaguidDesc}"
 																					 Foreground="{DynamicResource TextFillColorSecondaryBrush}"
 																					 FontSize="12"
 																					 TextWrapping="Wrap" />
@@ -381,11 +381,11 @@ xmlns="https://github.com/avaloniaui"
 																				 VerticalAlignment="Center" />
 																<Button Command="{Binding ClearAaguidCommand}"
 																				IsEnabled="{Binding !IsApplyingAaguid}"
-																				ToolTip.Tip="Clear field"
+																				ToolTip.Tip="{u:Tr ClearField}"
 																				VerticalAlignment="Center">
 																		<ui:FAFontIcon Glyph="&#xE75C;" FontSize="16" FontFamily="Segoe Fluent Icons" />
 																</Button>
-																<Button Content="Apply"
+																<Button Content="{u:Tr Apply}"
 																				Command="{Binding ApplyAaguidCommand}"
 																				Classes="accent"
 																				VerticalAlignment="Center" />

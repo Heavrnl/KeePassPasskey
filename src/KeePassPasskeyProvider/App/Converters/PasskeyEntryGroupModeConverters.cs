@@ -9,7 +9,7 @@ internal static class PasskeyEntryGroupModeConverters
 {
 	public static readonly IValueConverter Text = new LambdaConverter(v => (v as PasskeyEntryGroupMode?) switch
 	{
-		PasskeyEntryGroupMode.SelectedGroup => "Selected group",
-		_ => "Passkeys group",
+		PasskeyEntryGroupMode.SelectedGroup => Util.LocalizationService.Instance.IsChinese ? "当前选中分组" : "Selected group",
+		_ => Util.LocalizationService.Instance.IsChinese ? "Passkeys 专属分组" : "Passkeys group",
 	});
 }
