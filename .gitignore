@@ -13,3 +13,5 @@ build/Debug/
 # NuGet
 packages/
 
+
+dist/
